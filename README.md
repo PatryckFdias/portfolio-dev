@@ -1,5 +1,6 @@
 # 🚀 Portfólio Profissional (Next.js & Tailwind)
 
+🌐 **Acesse o projeto online:** [patryck-portfolio.vercel.app](https://patryck-deploy-8x1vbelch-tryck.vercel.app)
 Aplicação web moderna desenvolvida para servir como portfólio pessoal e centralizador de projetos de software, estruturada com foco em performance, componentização e design responsivo.
 
 ## 🛠️ Tecnologias e Ecossistema
