@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #030712;
+    color: #00f0ff;
+    font-family: var(--font-mono), monospace;
+    overflow-x: hidden;
+  }
+}
+
+/* Caixa HUD Tática em Azul Ciano com detalhes limpos */
+.hud-box {
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  background: rgba(3, 7, 18, 0.9);
+  transition: all 0.3s ease;
+}
+
+.hud-box:hover {
+  border-color: #00f0ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
