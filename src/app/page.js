@@ -4,8 +4,99 @@
 import { useState } from 'react';
 
 // ==========================================
-// 1. ESTRUTURAS DE DADOS 
+// 1. DICIONÁRIO DE IDIOMAS & ESTRUTURAS
 // ==========================================
+
+const TRANSLATIONS = {
+  PT: {
+    navSobre: "SOBRE",
+    navProjetos: "PROJETOS",
+    navStack: "STACK",
+    navCv: "Currículo",
+    navContato: "CONTATO",
+    badgeHero: "> ENGENHARIA DE SOFTWARE & AUTOMAÇÃO",
+    heroTitle: "SOFTWARE ENGINEER | FULL STACK",
+    heroDesc: "Desenvolvimento Python, C++ e ecossistema TypeScript/Node. Foco em resolver gargalos sistêmicos através de lógica algorítmica rigorosa e entrega de soluções práticas.",
+    aboutSub: "/* um pouco sobre mim */",
+    aboutTitle: "Quem está por trás da arquitetura.",
+    aboutText1: "Sou Patryck, tenho 22 anos e estudo Ciência da Computação na UTP. Sou apaixonado por construir sistemas estruturalmente sólidos, lidando desde a lógica de baixo nível até interfaces web completas.",
+    aboutText2: "Para mim, a engenharia é sobre alavancagem e eficiência. Aplico essa mesma busca por desempenho fora das telas: seja na otimização cirúrgica de hardware para competir em eSports, ou na disciplina inegociável de 6 dias semanais dedicados à musculação de alta intensidade.",
+    aboutText3: "Mergulho fundo em cibersegurança e fundamentos arquitetónicos porque entender como as coisas quebram é a melhor forma de construí-las. Com foco no longo prazo, estudo ativamente Italiano, Alemão e Japonês para atuar num mercado sem fronteiras.",
+    statYears: "Anos de Estudo",
+    statProjects: "Sistemas Reais",
+    statTech: "Tecnologias",
+    statGym: "Dias na Semana",
+    trajectoryTitle: "> Trajetória_Profissional //",
+    t1Title: "Engenharia Web & Expansão (2026 - Atual)",
+    t1Desc: "Desenvolvimento do TCC focado numa extensão de navegador para auditoria e automação de formulários web. Aprofundamento contínuo no ecossistema React/Node.js e estudo ativo de idiomas estratégicos visando integração arquitetónica global.",
+    t2Title: "Sistemas Embarcados & Hardware (2025)",
+    t2Desc: "Arquitetura e programação de baixo nível em C/C++ (Arduino) no Projeto Spider. Construção de um robô autônomo, exigindo calibração física de sensores ultrassônicos e desenvolvimento de algoritmos para cálculo de trajetória e evasão em tempo real.",
+    t3Title: "Resiliência & Operação (2024 - Presente)",
+    t3Desc: "Atendente Operacional na Famiglia Fadanelli. Atuação num ambiente de extrema pressão logística, comprovando alta resiliência, rápida resolução de conflitos e tomada de decisão ágil sob stress operacional.",
+    t4Title: "Fundação Acadêmica & Cibersegurança",
+    t4Desc: "Início do Bacharelado em Ciência da Computação (UTP). Consolidação da base de infraestrutura através das certificações Cisco Networking Academy: CCNA, Segurança de Endpoint e Introdução à Cibersegurança.",
+    projectsTitle: "> Projetos_em_Destaque //",
+    repo: "[ Repositório ]",
+    inspect: "[ Inspecionar Blueprint ]",
+    demo: "[ Demonstração ]",
+    stackTitle: "> Tecnologias_e_Ferramentas //",
+    contactSub: "/ contato",
+    contactTitle: "Vamos Trabalhar Juntos?",
+    contactDesc: "Tem um projeto em mente ou quer conversar sobre tecnologia e engenharia? Me Mande uma mensagem.",
+    formName: "nome",
+    formEmail: "email",
+    formSubject: "assunto",
+    formMsg: "mensagem",
+    formBtn: "Enviar Mensagem",
+    cvTitle: "Dossier_Profissional.sys",
+    cvSub: "Engenheiro de Software • UTP",
+    cvBtnPdf: "[ BAIXAR PDF ]"
+  },
+  EN: {
+    navSobre: "ABOUT",
+    navProjetos: "PROJECTS",
+    navStack: "STACK",
+    navCv: "Resume",
+    navContato: "CONTACT",
+    badgeHero: "> SOFTWARE ENGINEERING & AUTOMATION",
+    heroTitle: "SOFTWARE ENGINEER | FULL STACK",
+    heroDesc: "Python, C++, and TypeScript/Node ecosystem development. Focused on solving systemic bottlenecks through rigorous algorithmic logic and delivering practical solutions.",
+    aboutSub: "/* a bit about me */",
+    aboutTitle: "Who is behind the architecture.",
+    aboutText1: "I am Patryck, 22 years old, studying Computer Science at UTP. I am passionate about building structurally solid systems, dealing with everything from low-level logic to complete web interfaces.",
+    aboutText2: "For me, engineering is about leverage and efficiency. I apply this same pursuit of performance outside the screen: whether in surgical hardware optimization to compete in eSports, or the non-negotiable discipline of 6 days a week dedicated to high-intensity bodybuilding.",
+    aboutText3: "I dive deep into cybersecurity and architectural fundamentals because understanding how things break is the best way to build them. Focusing on the long term, I actively study Italian, German, and Japanese to operate in a borderless market.",
+    statYears: "Years of Study",
+    statProjects: "Real Systems",
+    statTech: "Technologies",
+    statGym: "Days a Week",
+    trajectoryTitle: "> Professional_Trajectory //",
+    t1Title: "Web Engineering & Expansion (2026 - Present)",
+    t1Desc: "Capstone project focused on a browser extension for web form auditing and automation. Continuous deepening in the React/Node.js ecosystem and active study of strategic languages for global architectural integration.",
+    t2Title: "Embedded Systems & Hardware (2025)",
+    t2Desc: "Low-level architecture and programming in C/C++ (Arduino) in the Spider Project. Construction of an autonomous robot requiring physical calibration of ultrasonic sensors and algorithms for real-time trajectory calculation and obstacle evasion.",
+    t3Title: "Resilience & Operation (2024 - Present)",
+    t3Desc: "Operational Attendant at Famiglia Fadanelli. Operating in an environment of extreme logistical pressure, proving high resilience, rapid conflict resolution, and agile decision-making under operational stress.",
+    t4Title: "Academic Foundation & Cybersecurity",
+    t4Desc: "Started Bachelor's in Computer Science (UTP). Consolidation of infrastructure foundations through Cisco Networking Academy certifications: CCNA, Endpoint Security, and Introduction to Cybersecurity.",
+    projectsTitle: "> Featured_Projects //",
+    repo: "[ Repository ]",
+    inspect: "[ Inspect Blueprint ]",
+    demo: "[ Demonstration ]",
+    stackTitle: "> Technologies_&_Tools //",
+    contactSub: "/ contact",
+    contactTitle: "Let's Work Together?",
+    contactDesc: "Have a project in mind or want to talk about tech and engineering? Send me a message.",
+    formName: "name",
+    formEmail: "email",
+    formSubject: "subject",
+    formMsg: "message",
+    formBtn: "Send Message",
+    cvTitle: "Professional_Dossier.sys",
+    cvSub: "Software Engineer • UTP",
+    cvBtnPdf: "[ DOWNLOAD PDF ]"
+  }
+};
 
 const PROJECTS = [
   {
@@ -126,8 +217,9 @@ export default function Home() {
   const [activeCvTab, setActiveCvTab] = useState(0);
   
   const [darkMode, setDarkMode] = useState(true);
-  const [isOpenToWork, setIsOpenToWork] = useState(true);
   const [language, setLanguage] = useState('PT');
+
+  const t = TRANSLATIONS[language];
 
   const closeModal = () => {
     setActiveModal(null);
@@ -145,9 +237,6 @@ export default function Home() {
     accent1: darkMode ? 'border-hud-red text-hud-red' : 'border-red-600 text-red-600',
     accent2: darkMode ? 'border-hud-cyan text-hud-cyan' : 'border-blue-600 text-blue-600',
     hoverBg: darkMode ? 'hover:bg-hud-cyan/10' : 'hover:bg-slate-100',
-    ctaBg: darkMode ? 'bg-hud-cyan text-[#030712]' : 'bg-slate-900 text-white',
-    ctaInput: darkMode ? 'border-[#030712]/30 placeholder-[#030712]/50' : 'border-white/30 placeholder-white/50',
-    ctaBtn: darkMode ? 'border-[#030712] hover:bg-[#030712] hover:text-hud-cyan' : 'border-white hover:bg-white hover:text-slate-900'
   };
 
   return (
@@ -165,9 +254,9 @@ export default function Home() {
 
         {/* CENTRO: Links de Navegação */}
         <div className="flex-none flex flex-wrap justify-center gap-4 sm:gap-6 font-mono text-xs font-bold tracking-widest mb-4 xl:mb-0">
-          <a href="#sobre" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>SOBRE</a>
-          <a href="#projetos" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>PROJETOS</a>
-          <a href="#stack" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>STACK</a>
+          <a href="#sobre" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>{t.navSobre}</a>
+          <a href="#projetos" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>{t.navProjetos}</a>
+          <a href="#stack" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>{t.navStack}</a>
           <button 
             onClick={() => {
               setActiveCvTab(0);
@@ -175,12 +264,12 @@ export default function Home() {
             }}
             className={`hover:opacity-100 transition-opacity uppercase ${theme.textSec}`}
           >
-            Currículo
+            {t.navCv}
           </button>
-          <a href="#contato" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>CONTATO</a>
+          <a href="#contato" className={`hover:opacity-100 transition-opacity ${theme.textSec}`}>{t.navContato}</a>
         </div>
 
-        {/* DIREITA: Controlos de Interface */}
+        {/* DIREITA: Controlos de Interface (Open to Work travado estaticamente) */}
         <div className="w-full xl:flex-1 flex justify-center xl:justify-end items-center gap-2 font-mono text-xs">
           <button 
             onClick={() => setDarkMode(!darkMode)}
@@ -192,16 +281,14 @@ export default function Home() {
           <button 
             onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
             className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all font-bold ${theme.border} ${theme.hoverBg}`}
+            title="Alterar Idioma"
           >
             {language}
           </button>
-          <button 
-            onClick={() => setIsOpenToWork(!isOpenToWork)}
-            className={`h-8 px-4 rounded-full border flex items-center gap-2 transition-all ${isOpenToWork ? 'border-emerald-500/50 text-emerald-500' : `border-red-500/50 text-red-500`}`}
-          >
-            <span className={`w-2 h-2 rounded-full ${isOpenToWork ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></span>
-            {isOpenToWork ? 'OPEN TO WORK' : 'UNAVAILABLE'}
-          </button>
+          <div className="h-8 px-4 rounded-full border flex items-center gap-2 border-emerald-500/50 text-emerald-500 cursor-default select-none">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            OPEN TO WORK
+          </div>
         </div>
       </nav>
 
@@ -216,12 +303,12 @@ export default function Home() {
           <div className={`absolute bottom-[-1px] right-[-1px] w-3 h-3 border-b-2 border-r-2 ${darkMode ? 'border-hud-red' : 'border-red-600'}`}></div>
 
           <div className="max-w-2xl">
-            <div className={`text-xs font-mono mb-2 uppercase tracking-widest font-bold ${darkMode ? 'text-hud-red' : 'text-red-600'}`}>&gt; ENGENHARIA DE SOFTWARE & AUTOMAÇÃO</div>
+            <div className={`text-xs font-mono mb-2 uppercase tracking-widest font-bold ${darkMode ? 'text-hud-red' : 'text-red-600'}`}>{t.badgeHero}</div>
             <h1 className={`text-4xl sm:text-6xl font-black mb-4 tracking-tighter uppercase ${theme.textMain}`}>
-              SOFTWARE ENGINEER | FULL STACK
+              {t.heroTitle}
             </h1>
             <p className={`text-base sm:text-lg font-mono leading-relaxed ${theme.textSec}`}>
-              Desenvolvimento Python, C++ e ecossistema TypeScript/Node. Foco em resolver gargalos sistêmicos através de lógica algorítmica rigorosa e entrega de soluções práticas.
+              {t.heroDesc}
             </p>
           </div>
         </div>
@@ -230,23 +317,16 @@ export default function Home() {
         <div id="sobre" className="w-full max-w-5xl mt-10 mb-20 scroll-mt-32 z-10 font-mono">
           <div className="flex flex-col lg:flex-row gap-16">
             
-            {/* Lado Esquerdo: Texto e Tags */}
             <div className="flex-1 flex flex-col gap-6">
-              <span className={`text-xs font-bold tracking-widest uppercase ${theme.textSec}`}>/* um pouco sobre mim */</span>
+              <span className={`text-xs font-bold tracking-widest uppercase ${theme.textSec}`}>{t.aboutSub}</span>
               <h2 className={`text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-tight ${theme.textMain}`}>
-                Quem está por trás da arquitetura.
+                {t.aboutTitle}
               </h2>
               
               <div className={`space-y-4 text-sm leading-relaxed mt-2 ${theme.textSec}`}>
-                <p>
-                  Sou <strong className={theme.textMain}>Patryck</strong>, tenho 22 anos e estudo <strong className={theme.textMain}>Ciência da Computação</strong> na UTP. Sou apaixonado por construir sistemas estruturalmente sólidos, lidando desde a lógica de baixo nível até interfaces web completas.
-                </p>
-                <p>
-                  Para mim, a engenharia é sobre alavancagem e eficiência. Aplico essa mesma busca por desempenho fora das telas: seja na otimização cirúrgica de hardware para competir em <strong className={theme.textMain}>eSports</strong>, ou na disciplina inegociável de 6 dias semanais dedicados à musculação de alta intensidade.
-                </p>
-                <p>
-                  Mergulho fundo em cibersegurança e fundamentos arquitetónicos porque entender como as coisas quebram é a melhor forma de construí-las. Com foco no longo prazo, estudo ativamente <strong className={theme.textMain}>Italiano, Alemão e Japonês</strong> para atuar num mercado sem fronteiras.
-                </p>
+                <p>{t.aboutText1}</p>
+                <p>{t.aboutText2}</p>
+                <p>{t.aboutText3}</p>
               </div>
 
               <div className="flex flex-wrap gap-3 mt-4">
@@ -258,7 +338,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Lado Direito: Grid de Estatísticas */}
             <div className="flex-1 flex flex-col">
               <span className={`text-xs font-bold tracking-widest text-right hidden lg:block uppercase mb-6 ${theme.textSec}`}>
                 métricas_do_sistema
@@ -267,22 +346,22 @@ export default function Home() {
                 <div className={`p-6 flex flex-col justify-center transition-colors ${theme.cardBg} ${theme.hoverBg}`}>
                   <span className={`text-[10px] uppercase tracking-wider mb-2 ${theme.textSec}`}>years_of_code</span>
                   <span className={`text-4xl font-black mb-1 ${theme.textMain}`}>3+</span>
-                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>Anos de Estudo</span>
+                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>{t.statYears}</span>
                 </div>
                 <div className={`p-6 flex flex-col justify-center transition-colors ${theme.cardBg} ${theme.hoverBg}`}>
                   <span className={`text-[10px] uppercase tracking-wider mb-2 ${theme.textSec}`}>projects_built</span>
                   <span className={`text-4xl font-black mb-1 ${theme.textMain}`}>8</span>
-                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>Sistemas Reais</span>
+                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>{t.statProjects}</span>
                 </div>
                 <div className={`p-6 flex flex-col justify-center transition-colors ${theme.cardBg} ${theme.hoverBg}`}>
                   <span className={`text-[10px] uppercase tracking-wider mb-2 ${theme.textSec}`}>tech_stacks</span>
                   <span className={`text-4xl font-black mb-1 ${theme.textMain}`}>12</span>
-                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>Tecnologias</span>
+                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>{t.statTech}</span>
                 </div>
                 <div className={`p-6 flex flex-col justify-center transition-colors ${theme.cardBg} ${theme.hoverBg}`}>
                   <span className={`text-[10px] uppercase tracking-wider mb-2 ${theme.textSec}`}>gym_sessions</span>
                   <span className={`text-4xl font-black mb-1 ${theme.textMain}`}>6/7</span>
-                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>Dias na Semana</span>
+                  <span className={`text-xs uppercase tracking-widest ${theme.textSec}`}>{t.statGym}</span>
                 </div>
               </div>
             </div>
@@ -292,39 +371,31 @@ export default function Home() {
 
         {/* SECÇÃO TRAJETÓRIA PROFISSIONAL */}
         <div className="w-full max-w-5xl mt-10 mb-20 scroll-mt-32 z-10 font-mono">
-          <h2 className={`text-2xl font-bold mb-10 tracking-tight uppercase ${theme.textMain}`}>&gt; Trajetória_Profissional //</h2>
+          <h2 className={`text-2xl font-bold mb-10 tracking-tight uppercase ${theme.textMain}`}>{t.trajectoryTitle}</h2>
           <div className={`border-l ml-4 pl-8 space-y-12 relative ${theme.border}`}>
             
             <div className="relative">
               <span className={`absolute -left-[37px] top-1.5 h-3 w-3 rounded-full ${darkMode ? 'bg-hud-cyan shadow-[0_0_10px_#00f0ff]' : 'bg-blue-600'}`}></span>
-              <h3 className={`text-lg font-bold ${theme.textMain}`}>Engenharia Web & Expansão (2026 - Atual)</h3>
-              <p className={`text-sm mt-2 ${theme.textSec}`}>
-                Desenvolvimento do TCC focado numa extensão de navegador para auditoria e automação de formulários web. Aprofundamento contínuo no ecossistema React/Node.js e estudo ativo de idiomas estratégicos visando integração arquitetónica global.
-              </p>
+              <h3 className={`text-lg font-bold ${theme.textMain}`}>{t.t1Title}</h3>
+              <p className={`text-sm mt-2 ${theme.textSec}`}>{t.t1Desc}</p>
             </div>
 
             <div className="relative">
               <span className={`absolute -left-[37px] top-1.5 h-3 w-3 rounded-full border ${darkMode ? 'bg-[#030712] border-hud-cyan' : 'bg-white border-blue-600'}`}></span>
-              <h3 className={`text-lg font-bold ${theme.textMain}`}>Sistemas Embarcados & Hardware (2025)</h3>
-              <p className={`text-sm mt-2 ${theme.textSec}`}>
-                Arquitetura e programação de baixo nível em C/C++ (Arduino) no Projeto Spider. Construção de um robô autônomo, exigindo calibração física de sensores ultrassônicos e desenvolvimento de algoritmos para cálculo de trajetória e evasão em tempo real.
-              </p>
+              <h3 className={`text-lg font-bold ${theme.textMain}`}>{t.t2Title}</h3>
+              <p className={`text-sm mt-2 ${theme.textSec}`}>{t.t2Desc}</p>
             </div>
 
             <div className="relative">
               <span className={`absolute -left-[37px] top-1.5 h-3 w-3 rounded-full border ${darkMode ? 'bg-[#030712] border-hud-red' : 'bg-white border-red-600'}`}></span>
-              <h3 className={`text-lg font-bold ${theme.textMain}`}>Resiliência & Operação (2024 - Presente)</h3>
-              <p className={`text-sm mt-2 ${theme.textSec}`}>
-                Atendente Operacional na Famiglia Fadanelli. Atuação num ambiente de extrema pressão logística, comprovando alta resiliência, rápida resolução de conflitos e tomada de decisão ágil sob stress operacional.
-              </p>
+              <h3 className={`text-lg font-bold ${theme.textMain}`}>{t.t3Title}</h3>
+              <p className={`text-sm mt-2 ${theme.textSec}`}>{t.t3Desc}</p>
             </div>
 
             <div className="relative">
               <span className={`absolute -left-[37px] top-1.5 h-3 w-3 rounded-full border ${darkMode ? 'bg-[#030712] border-slate-500' : 'bg-white border-slate-500'}`}></span>
-              <h3 className={`text-lg font-bold ${theme.textMain}`}>Fundação Acadêmica & Cibersegurança</h3>
-              <p className={`text-sm mt-2 ${theme.textSec}`}>
-                Início do Bacharelado em Ciência da Computação (UTP). Consolidação da base de infraestrutura através das certificações Cisco Networking Academy: CCNA, Segurança de Endpoint e Introdução à Cibersegurança.
-              </p>
+              <h3 className={`text-lg font-bold ${theme.textMain}`}>{t.t4Title}</h3>
+              <p className={`text-sm mt-2 ${theme.textSec}`}>{t.t4Desc}</p>
             </div>
 
           </div>
@@ -332,7 +403,7 @@ export default function Home() {
 
         {/* SECÇÃO DE PROJETOS */}
         <div id="projetos" className="w-full max-w-5xl mt-10 mb-20 scroll-mt-32 z-10">
-          <h2 className={`text-2xl font-bold mb-6 tracking-tight uppercase ${theme.textMain}`}>&gt; Projetos_em_Destaque //</h2>
+          <h2 className={`text-2xl font-bold mb-6 tracking-tight uppercase ${theme.textMain}`}>{t.projectsTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {PROJECTS.map((proj) => (
               <div key={proj.id} className={`p-6 flex flex-col justify-between transition-all group border relative ${theme.border} ${theme.cardBg} ${theme.hoverBg}`}>
@@ -352,7 +423,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className={`flex gap-4 mt-auto pt-4 border-t font-mono ${theme.border}`}>
-                  <a href={proj.repoLink} target="_blank" rel="noreferrer" className={`text-sm hover:underline ${theme.textSec}`}>[ Repositório ]</a>
+                  <a href={proj.repoLink} target="_blank" rel="noreferrer" className={`text-sm hover:underline ${theme.textSec}`}>{t.repo}</a>
                   <button 
                     onClick={() => {
                       if (proj.modalType === 'rich') {
@@ -364,7 +435,7 @@ export default function Home() {
                     }} 
                     className={`text-sm ml-auto font-bold cursor-pointer hover:underline ${theme.textMain}`}
                   >
-                    {proj.modalType === 'rich' ? '[ Inspecionar Blueprint ]' : '[ Demonstração ]'}
+                    {proj.modalType === 'rich' ? t.inspect : t.demo}
                   </button>
                 </div>
               </div>
@@ -374,7 +445,7 @@ export default function Home() {
 
         {/* SECÇÃO STACK TECNOLÓGICA */}
         <div id="stack" className="w-full max-w-5xl mt-10 mb-20 scroll-mt-32 z-10">
-          <h2 className={`text-2xl font-bold mb-6 tracking-tight uppercase ${theme.textMain}`}>&gt; Tecnologias_e_Ferramentas //</h2>
+          <h2 className={`text-2xl font-bold mb-6 tracking-tight uppercase ${theme.textMain}`}>{t.stackTitle}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono">
             {STACK.map((item) => (
               <div key={item.name} className={`p-4 flex flex-col items-center justify-center gap-3 border transition-colors ${theme.border} ${theme.cardBg} ${theme.hoverBg}`}>
@@ -393,17 +464,17 @@ export default function Home() {
           </div>
         </div>
 
-        {/* SECÇÃO DE CONTATO TÁTICO (FORMULÁRIO ATIVADO VIA FORMSPREE) */}
+        {/* SECÇÃO DE CONTATO TÁTICO */}
         <div id="contato" className={`w-full max-w-5xl mt-10 mb-10 p-8 sm:p-16 scroll-mt-32 z-10 transition-colors shadow-lg border relative ${theme.border} ${theme.cardBg}`}>
           <div className={`absolute top-[-1px] left-[-1px] w-3 h-3 border-t-2 border-l-2 ${darkMode ? 'border-hud-red' : 'border-red-600'}`}></div>
           <div className={`absolute bottom-[-1px] right-[-1px] w-3 h-3 border-b-2 border-r-2 ${darkMode ? 'border-hud-cyan' : 'border-blue-600'}`}></div>
 
           <div className="flex flex-col md:flex-row gap-16">
             <div className="flex-1 flex flex-col gap-6">
-              <span className={`font-mono text-xs font-bold tracking-widest uppercase ${theme.textSec}`}>/ contato</span>
-              <h2 className={`text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-none ${theme.textMain}`}>Vamos Trabalhar Juntos?</h2>
+              <span className={`font-mono text-xs font-bold tracking-widest uppercase ${theme.textSec}`}>{t.contactSub}</span>
+              <h2 className={`text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-none ${theme.textMain}`}>{t.contactTitle}</h2>
               <p className={`font-mono text-sm max-w-md mt-2 ${theme.textSec}`}>
-                Tem um projeto em mente ou quer conversar sobre tecnologia e engenharia? Me Mande uma mensagem.
+                {t.contactDesc}
               </p>
               
               <div className="flex flex-col gap-4 font-mono text-sm mt-6 font-bold">
@@ -427,27 +498,27 @@ export default function Home() {
               
               <form action="https://formspree.io/f/xppzlapl" method="POST" className="flex flex-col gap-8 font-mono text-sm mt-2">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className={`text-xs ${theme.textSec}`}>nome</label>
+                  <label htmlFor="name" className={`text-xs ${theme.textSec}`}>{t.formName}</label>
                   <input type="text" name="name" id="name" required placeholder="Seu nome" className={`bg-transparent border-b pb-2 focus:outline-none transition-colors border-hud-cyan/30 placeholder-slate-600 focus:border-hud-cyan text-hud-cyan`} />
                 </div>
                 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className={`text-xs ${theme.textSec}`}>email</label>
+                  <label htmlFor="email" className={`text-xs ${theme.textSec}`}>{t.formEmail}</label>
                   <input type="email" name="email" id="email" required placeholder="seu@email.com" className={`bg-transparent border-b pb-2 focus:outline-none transition-colors border-hud-cyan/30 placeholder-slate-600 focus:border-hud-cyan text-hud-cyan`} />
                 </div>
                 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="subject" className={`text-xs ${theme.textSec}`}>assunto</label>
+                  <label htmlFor="subject" className={`text-xs ${theme.textSec}`}>{t.formSubject}</label>
                   <input type="text" name="subject" id="subject" required placeholder="Assunto do projeto" className={`bg-transparent border-b pb-2 focus:outline-none transition-colors border-hud-cyan/30 placeholder-slate-600 focus:border-hud-cyan text-hud-cyan`} />
                 </div>
                 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className={`text-xs ${theme.textSec}`}>mensagem</label>
+                  <label htmlFor="message" className={`text-xs ${theme.textSec}`}>{t.formMsg}</label>
                   <textarea rows="3" name="message" id="message" required placeholder="Sua mensagem..." className={`bg-transparent border-b pb-2 focus:outline-none transition-colors resize-none border-hud-cyan/30 placeholder-slate-600 focus:border-hud-cyan text-hud-cyan`}></textarea>
                 </div>
                 
                 <button type="submit" className={`self-start px-8 py-4 font-bold text-xs uppercase tracking-widest border transition-all cursor-pointer ${theme.border} ${theme.textMain} ${theme.hoverBg}`}>
-                  Enviar Mensagem
+                  {t.formBtn}
                 </button>
               </form>
             </div>
@@ -456,7 +527,7 @@ export default function Home() {
 
       </div>
 
-      {/* MODAL UNIVERSAL / CURRÍCULO (Cabeçalho fixo no topo p/ mobile) */}
+      {/* MODAL UNIVERSAL / CURRÍCULO */}
       {activeModal && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8" onClick={closeModal}>
           <div className={`relative w-full max-w-5xl max-h-[90vh] overflow-y-auto border flex flex-col shadow-2xl ${theme.border} ${theme.cardBg}`} onClick={(e) => e.stopPropagation()}>
@@ -469,15 +540,15 @@ export default function Home() {
               <div className="p-4 sm:p-8 flex flex-col gap-6 font-mono">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div>
-                    <h2 className={`text-2xl font-bold tracking-tight ${theme.textMain}`}>&gt; Dossier_Profissional.sys</h2>
-                    <p className={`mt-1 text-xs ${theme.textSec}`}>Engenheiro de Software • UTP</p>
+                    <h2 className={`text-2xl font-bold tracking-tight ${theme.textMain}`}>&gt; {t.cvTitle}</h2>
+                    <p className={`mt-1 text-xs ${theme.textSec}`}>{t.cvSub}</p>
                   </div>
                   <a 
                     href="/Curriculo.pdf" 
-                    download="Patryck_Fragoso_CV.pdf"
+                    download="Curriculo_Patryck_Dias.pdf"
                     className={`border px-4 py-2 text-xs font-bold transition-all ${theme.border} ${theme.hoverBg} ${theme.textMain}`}
                   >
-                    [ BAIXAR PDF ]
+                    {t.cvBtnPdf}
                   </a>
                 </div>
 
